@@ -301,3 +301,106 @@ cout << *ptr << "\n";
 ## Modify the Pointer Value
 
 Assign new value to `*ptr` and the value of the variable will change as well
+
+# Functions
+
+## Create a Function
+
+```
+type_of_return myFunction() { // declaration
+// the body of the function (definition)
+}
+```
+
+It is possible to separate the `declaration` and the `definition` of the function - for code optimization.<br>
+To have function declaration above `main()`, and function definition below `main()`.
+
+```
+// Function declaration
+void myFunction();
+
+// The main method
+int main() {
+myFunction();  // call the function
+return 0;
+}
+
+// Function definition
+void myFunction() {
+cout << "I just got executed!";
+}
+```
+
+## Parameters and Arguments
+
+```
+void functionName(type1 parameter1, type2 parameter2,type3 parameter3) {
+// code to be executed
+}
+```
+
+Example
+
+```
+void myFunction(string fname) {
+cout << fname << " Refsnes\n";
+}
+```
+
+### Default Parameter Values
+
+```
+void myFunction(string country = "Norway") {
+cout << country << "\n";
+}
+```
+
+### **Pass By Reference**
+
+See [this link](https://www.mathwarehouse.com/programming/passing-by-value-vs-by-reference-visual-explanation.php)
+
+When pass by value:<br>
+The value in the memory is **copied** to another location to be used within the function
+
+When pass by Reference:<br>
+the **memory address** of the variable (a pointer to the memory location) is passed to the function => modify the original value directly
+
+Example:
+
+```
+void swapNums(int &x, int &y) {
+int z = x;
+x = y;
+y = z;
+}
+
+int main() {
+int firstNum = 10;
+int secondNum = 20;
+
+cout << "Before swap: " << "\n";
+cout << firstNum << secondNum << "\n";
+
+// Call the function, which will change the values of firstNum and secondNum
+swapNums(firstNum, secondNum);
+
+cout << "After swap: " << "\n";
+cout << firstNum << secondNum << "\n";
+
+return 0;
+}
+```
+
+If one delete the `&` sign in the code, the order of the numbers will not change.
+
+#### Function Overloading
+
+With **function overloading**, multiple functions can have the same name with different parameters:
+
+```
+int myFunction(int x)
+float myFunction(float x)
+double myFunction(double x, double y)
+```
+
+Instead of defining two functions that should do the same thing, it is better to overload one, like plus function
