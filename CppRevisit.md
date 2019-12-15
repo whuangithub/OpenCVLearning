@@ -236,7 +236,7 @@ string cars[3] = {"Mazda"};
 string cars[4] = {"Tesla"};
 ```
 
-# References
+# **References**
 
 ## Creating References
 
@@ -262,7 +262,7 @@ cout << &food; // Outputs 0x6dfed4
 
 `&` + var_name => memory address
 
-# Pointer
+# **Pointer**
 
 A `pointer`, is a variable that **stores the memory address as its value**.
 
@@ -393,7 +393,7 @@ return 0;
 
 If one delete the `&` sign in the code, the order of the numbers will not change.
 
-#### Function Overloading
+#### _Function Overloading_
 
 With **function overloading**, multiple functions can have the same name with different parameters:
 
@@ -403,4 +403,8 @@ float myFunction(float x)
 double myFunction(double x, double y)
 ```
 
-Instead of defining two functions that should do the same thing, it is better to overload one, like plus function
+Instead of defining two functions that should do the same thing, it is better to overload one, like plus function.
+
+### References
+
+[Link](https://www.w3schools.com/cpp/default.asp)
