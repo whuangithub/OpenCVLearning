@@ -12,7 +12,7 @@ int x = 2, y = 3, z = 4;
 cout << x + y + z
 ```
 
-## constant
+## **constant**
 
 add the `const` keyword if you don't want others (or yourself) to override existing values. **unchangeable and read-only**
 
