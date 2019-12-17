@@ -33,7 +33,7 @@ cout << "I am " << myAge << " years old.";
 # User Input
 
 `cout` (pronounce: see-out) is used to output (print) values.<br>
-Now we will use `cin` to get user input.
+Now we will use `cin` （see-in） to get user input.
 
 `cin` is a predefined variable that reads data from the keyboard with the extraction operator (`>>`).
 
