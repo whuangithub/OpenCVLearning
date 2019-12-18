@@ -123,3 +123,55 @@ int main() {
 	return 0;
 }
 ```
+## Access Specifiers
+```
+class MyClass {  // The class
+	public:        // Access specifier
+		// class members goes here
+};
+```
+The `public` keyword is an **access specifier**. **Access specifiers** define how the members (attributes and methods) of a class can be accessed.
+
+* public - members are accessible from outside the class
+* private - members cannot be accessed (or viewed) from outside the class (**default**)
+* protected - members cannot be accessed from outside the class, however, they can be accessed in inherited classes.
+
+## Encapsulation (封装 verb: encapsulate)
+
+The meaning of **Encapsulation**, is to make sure that "sensitive" data is hidden from users. To achieve this, you must declare class variables/attributes as _private_ (cannot be accessed from outside the class). If you want others to read or modify the value of a private member, you can provide _public_ `get` and `set` methods.
+
+```
+#include <iostream>
+using namespace std;
+
+class Employee {
+	private:
+		// Private attribute
+		int salary;
+
+	public:
+		// Setter
+		void setSalary(int s) {
+			salary = s;
+		}
+		// Getter
+		int getSalary() {
+			return salary;
+		}
+};
+
+int main() {
+	Employee myObj;
+	myObj.setSalary(50000);
+	cout << myObj.getSalary();
+	return 0;
+}
+```
+
+## Inheritance
+
+
+
+### References
+
+[Link](https://www.w3schools.com/cpp/default.asp)
