@@ -170,7 +170,122 @@ int main() {
 
 ## Inheritance
 
+To inherit from a class, use the `:` symbol.
 
+```
+// Base class
+class Vehicle {
+	public:
+		string brand = "Ford";
+		void honk() {
+			cout << "Tuut, tuut! \n" ;
+		}
+};
+
+// Derived class
+// Car: child class
+// Vehicle: parent class
+class Car: public Vehicle {
+	public:
+		string model = "Mustang";
+};
+
+int main() {
+	Car myCar;
+	myCar.honk();
+	cout << myCar.brand + " " + myCar.model;
+	return 0;
+}
+// output:
+// Tuut, tuut!
+// Ford Mustang
+```
+
+### Multilevel Inheritance
+
+parent -> child -> grandchild
+### Multiple Inheritance
+
+A class can also be derived from more than one base class, using a **comma-separated list**
+
+```
+// Base class
+class MyClass {
+	public:
+		void myFunction() {
+			cout << "Some content in parent class." ;
+		}
+};
+
+// Another base class
+class MyOtherClass {
+	public:
+		void myOtherFunction() {
+			cout << "Some content in another class." ;
+		}
+};
+
+// Derived class
+// !!!!!!!!!!!!!!!!!!!!!!!!
+class MyChildClass: public MyClass, public MyOtherClass {
+};
+
+int main() {
+	MyChildClass myObj;
+	myObj.myFunction();
+	myObj.myOtherFunction();
+	return 0;
+}
+```
+
+### Access Specifiers
+`protected`: can be accessed in the inherited class
+
+## Polymorphism （多态）
+
+override
+
+## Files
+
+`fstream` library
+
+### Create and Write To a File
+
+```
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+	// Create and open a text file
+	ofstream MyFile("filename.txt");
+
+	// Write to the file
+	// use << to write
+	MyFile << "Files can be tricky, but it is fun enough!";
+
+	// Close the file
+	MyFile.close();
+}
+```
+
+### Read a File
+```
+// Create a text string, which is used to output the text file
+string myText;
+
+// Read from the text file
+ifstream MyReadFile("filename.txt");
+
+// Use a while loop together with the getline() function to read the file line by line
+while (getline (MyReadFile, myText)) {
+	// Output the text from the file
+	cout << myText;
+}
+
+// Close the file
+MyReadFile.close();
+```
 
 ### References
 
