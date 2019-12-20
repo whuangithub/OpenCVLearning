@@ -287,6 +287,59 @@ while (getline (MyReadFile, myText)) {
 MyReadFile.close();
 ```
 
+## Exceptions
+
+Exception handling in C++ consist of three keywords: `try`, `throw` and `catch`.
+
+* The `try` statement allows you to define a block of code to be tested for errors while it is being executed.
+* The `throw` keyword throws an exception when a problem is detected, which lets us create a custom error.
+* The `catch` statement allows you to define a block of code to be executed, if an error occurs in the try block.
+
+### try and catch
+```
+try {
+	// Block of code to try
+	throw exception; // Throw an exception when a problem arise
+}
+catch () {
+	// Block of code to handle errors
+}
+```
+
+```
+try { // test some code with try               
+	int age = 15;
+	if (age > 18) {
+		cout << "Access granted - you are old enough.";
+	} else {
+		throw (age); // throw an exception
+	}
+}
+catch (int myNum) { //catch statement takes a parameter
+	cout << "Access denied - You must be at least 18 years old.\n";
+	cout << "Age is: " << myNum;
+}
+```
+
+### Handle Any Type of Exceptions `(...)`
+
+If one is not sure about the `throw` type, use `(...)`
+
+```
+try {
+	int age = 15;
+	if (age > 18) {
+		cout << "Access granted - you are old enough.";
+	} else {
+		throw 505;
+	}
+}
+catch (...) {
+	cout << "Access denied - You must be at least 18 years old.\n";
+}
+``` 
+
+
 ### References
 
 [Link](https://www.w3schools.com/cpp/default.asp)
