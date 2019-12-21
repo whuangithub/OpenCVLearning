@@ -26,12 +26,27 @@ int main(int,char**)
 		// create by using the constructor
 		//! [constructor]
 		Mat M(2,2, CV_8UC3, Scalar(0,0,255));
+		/*
+		CV_[The number of bits per item][Signed or Unsigned][Type Prefix]C[The channel number]
+		CV_8UC3 means we use unsigned char types that are 8 bit long and each pixel has three of these to form the three channels.
+
+		2 rows  & 2 columns
+		8 bits & 3 channels
+		all the elements are (0,0,255)
+		*/
+
 		cout << "M = " << endl << " " << M << endl << endl;
 		//! [constructor]
 
 		// create by using the create function()
 		//! [create]
 		M.create(4,4, CV_8UC(2));
+		/*
+		4 rows 4 columns
+		2 channels
+
+		create will reallocate its matrix data memory if the new size will not fit into the old one
+		*/
 		cout << "M = "<< endl << " "  << M << endl << endl;
 		//! [create]
 
@@ -45,10 +60,13 @@ int main(int,char**)
 
 		// Create using MATLAB style eye, ones or zero matrix
 		//! [matlab]
+		// Unit matrix
 		Mat E = Mat::eye(4, 4, CV_64F);
 		cout << "E = " << endl << " " << E << endl << endl;
+		// ones
 		Mat O = Mat::ones(2, 2, CV_32F);
 		cout << "O = " << endl << " " << O << endl << endl;
+		// zeros
 		Mat Z = Mat::zeros(3,3, CV_8UC1);
 		cout << "Z = " << endl << " " << Z << endl << endl;
 		//! [matlab]
@@ -69,6 +87,7 @@ int main(int,char**)
 		Mat RowClone = C.row(1).clone();
 		cout << "RowClone = " << endl << " " << RowClone << endl << endl;
 		//! [clone]
+		// clone() and copyTo: creating new matrix
 
 		// Fill a matrix with random values
 		//! [random]
