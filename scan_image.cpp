@@ -22,6 +22,7 @@ static void help()
 				<< endl;
 }
 
+// declare 3 functions
 Mat& ScanImageAndReduceC(Mat& I, const uchar* table);
 Mat& ScanImageAndReduceIterator(Mat& I, const uchar* table);
 Mat& ScanImageAndReduceRandomAccess(Mat& I, const uchar * table);
@@ -47,9 +48,18 @@ int main( int argc, char* argv[])
 				return -1;
 		}
 
+		// ****************lookup table****************
+
 		//! [dividewith]
+		// calculating the lookup table
+		// lookup table is used to avoid pixel-by-pixel calculation
 		int divideWith = 0; // convert our input string to number - C++ style
+		// stringstream: to divide a string
 		stringstream s;
+		// argv: argument vector
+		// here argv = "./how_to_scan_images <imageNameToUse> <divideWith> [G]"
+		// argv[2] is <divideWith>
+		// see: http://crasseux.com/books/ctutorial/argc-and-argv.html
 		s << argv[2];
 		s >> divideWith;
 		if (!s || !divideWith)
@@ -58,10 +68,13 @@ int main( int argc, char* argv[])
 				return -1;
 		}
 
+		// unsigned char
 		uchar table[256];
 		for (int i = 0; i < 256; ++i)
 			 table[i] = (uchar)(divideWith * (i/divideWith));
 		//! [dividewith]
+
+		//*******************************************
 
 		const int times = 100;
 		double t;
@@ -134,6 +147,7 @@ int main( int argc, char* argv[])
 Mat& ScanImageAndReduceC(Mat& I, const uchar* const table)
 {
 		// accept only char type matrices
+		// CV_Accesss: Checks a condition at runtime and throws exception if it fails.
 		CV_Assert(I.depth() == CV_8U);
 
 		int channels = I.channels();
@@ -141,19 +155,26 @@ Mat& ScanImageAndReduceC(Mat& I, const uchar* const table)
 		int nRows = I.rows;
 		int nCols = I.cols * channels;
 
+		// use the cv::Mat::isContinuous() function to ask the matrix
+		// if everything is in a single place following one after another
+		// which can speed up the calculation
 		if (I.isContinuous())
 		{
 				nCols *= nRows;
 				nRows = 1;
 		}
 
+		// acquire a pointer to the start of each row and go through it until it ends
 		int i,j;
+		// declare a pointer p to uchar variable
 		uchar* p;
 		for( i = 0; i < nRows; ++i)
 		{
+				// Mat::ptr : Returns a pointer to the specified matrix row.
 				p = I.ptr<uchar>(i);
 				for ( j = 0; j < nCols; ++j)
 				{
+						// ??? is p a pointer???
 						p[j] = table[p[j]];
 				}
 		}
@@ -167,13 +188,19 @@ Mat& ScanImageAndReduceIterator(Mat& I, const uchar* const table)
 		// accept only char type matrices
 		CV_Assert(I.depth() == CV_8U);
 
+
+		// begin: Returns the matrix iterator and sets it to the first matrix element.
+
 		const int channels = I.channels();
 		switch(channels)
 		{
 		case 1:
 				{
+						// it, end: pointer
 						MatIterator_<uchar> it, end;
 						for( it = I.begin<uchar>(), end = I.end<uchar>(); it != end; ++it)
+								// *it: the value at the address
+								// check the lookup table and modify the value at the address
 								*it = table[*it];
 						break;
 				}
