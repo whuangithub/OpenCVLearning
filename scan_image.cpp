@@ -74,7 +74,8 @@ int main( int argc, char* argv[])
 			 table[i] = (uchar)(divideWith * (i/divideWith));
 		//! [dividewith]
 
-		//*******************************************
+		//********************time for 4 methods***********************
+		//******** 1 **********
 
 		const int times = 100;
 		double t;
@@ -93,6 +94,8 @@ int main( int argc, char* argv[])
 		cout << "Time of reducing with the C operator [] (averaged for "
 				 << times << " runs): " << t << " milliseconds."<< endl;
 
+		//******** 2 **********
+
 		t = (double)getTickCount();
 
 		for (int i = 0; i < times; ++i)
@@ -106,6 +109,8 @@ int main( int argc, char* argv[])
 
 		cout << "Time of reducing with the iterator (averaged for "
 				<< times << " runs): " << t << " milliseconds."<< endl;
+
+		//******** 3 **********
 
 		t = (double)getTickCount();
 
@@ -128,10 +133,13 @@ int main( int argc, char* argv[])
 				p[i] = table[i];
 		//! [table-init]
 
+		//******** 4 **********
+
 		t = (double)getTickCount();
 
 		for (int i = 0; i < times; ++i)
 				//! [table-use]
+				// LUT： built-in function Performs a look-up table transform of an array.
 				LUT(I, lookUpTable, J);
 				//! [table-use]
 
@@ -221,6 +229,7 @@ Mat& ScanImageAndReduceIterator(Mat& I, const uchar* const table)
 //! [scan-iterator]
 
 //! [scan-random]
+// not recommended
 Mat& ScanImageAndReduceRandomAccess(Mat& I, const uchar* const table)
 {
 		// accept only char type matrices
@@ -233,6 +242,7 @@ Mat& ScanImageAndReduceRandomAccess(Mat& I, const uchar* const table)
 				{
 						for( int i = 0; i < I.rows; ++i)
 								for( int j = 0; j < I.cols; ++j )
+										// at: Returns a reference to the specified array element.
 										I.at<uchar>(i,j) = table[I.at<uchar>(i,j)];
 						break;
 				}
