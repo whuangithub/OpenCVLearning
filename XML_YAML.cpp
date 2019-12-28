@@ -21,9 +21,23 @@ static void help(char** av)
 class MyData
 {
 public:
+		// Constructor
+		// Initializer List
+		// is used in initializing the data members of a class.
+		// The list of members to be initialized is indicated with constructor as a comma-separated list followed by a colon.
 		MyData() : A(0), X(0), id()
 		{}
+		// equivalent to
+		/*
+		MyData()
+		{
+				A = 0;
+				X = 0;
+				id = ;
+		}
+		*/
 		explicit MyData(int) : A(97), X(CV_PI), id("mydata1234") // explicit to avoid implicit conversion
+																														 // avoid compiler convert the type automatically
 		{}
 		void write(FileStorage& fs) const                        //Write serialization for this class
 		{
