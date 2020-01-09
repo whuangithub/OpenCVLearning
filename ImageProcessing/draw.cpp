@@ -3,6 +3,16 @@
  * @brief Simple geometric drawing
  * @author OpenCV team
  */
+
+ // Point: a 2D point
+ // Point pt;
+ // pt.x = 10;
+ // pt.y = 8;
+ // OR
+ // Point pt = Point(10,8)
+
+ // Scalar: Represents a 4-element vector.
+ // Only use the first 3 elements in this tutorial
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
@@ -88,18 +98,19 @@ int main( void ){
  * @brief Draw a fixed-size ellipse with different angles
  */
 //![my_ellipse]
+// displayed in img
 void MyEllipse( Mat img, double angle )
 {
 	int thickness = 2;
 	int lineType = 8;
 
 	ellipse( img,
-			 Point( w/2, w/2 ),
-			 Size( w/4, w/16 ),
-			 angle,
-			 0,
+			 Point( w/2, w/2 ),  // center of the ellipses
+			 Size( w/4, w/16 ),  // enclosed in a box with size
+			 angle,              // rotated angle
+			 0,                  // extend an arc between 0 and 360
 			 360,
-			 Scalar( 255, 0, 0 ),
+			 Scalar( 255, 0, 0 ),// color (255,0,0) => blue in BGR
 			 thickness,
 			 lineType );
 }
@@ -131,6 +142,7 @@ void MyPolygon( Mat img )
 	int lineType = LINE_8;
 
 	/** Create some points */
+	// defines a shape
 	Point rook_points[1][20];
 	rook_points[0][0]  = Point(    w/4,   7*w/8 );
 	rook_points[0][1]  = Point(  3*w/4,   7*w/8 );
